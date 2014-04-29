@@ -1,4 +1,6 @@
-(function(window, document, SockJS){
+(function(window, document, SockJS, options){
+
+	options = options || {};
 
 	var onLibraryReady = [],
 	    transport      = null;
@@ -131,9 +133,9 @@
 
 		var defaultUrl = 'http://gf-ws-frontend.herokuapp.com/ws';
 
-		return window['gf'] != null ? window['gf']['serverUrl'] || defaultUrl : defaultUrl;
+		return options.serverUrl || defaultUrl;
 	};
 
 	window['gf'] = gf;
 
-})(window, document, window.SockJS);
+})(window, document, window.SockJS, window.gf);
