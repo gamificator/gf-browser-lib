@@ -5,12 +5,11 @@ gulp.task('default',['build']);
 gulp.task('build');
 
 gulp.task('pages', ['build'], function(done){
-	var git = require('gulp-git');
+	var exec = require('child_process').exec;
 	
-	git.push('github', 'gh-pages')
-	.end();
-	
-	done();
+	exec('git push github gh-pages', function(err, stdout, stderr) {
+		return done(err);
+	});
 	
 });
 
