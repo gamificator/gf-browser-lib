@@ -104,7 +104,7 @@
 	};
 
 	function createTransport () {
-		return new SockJS(gf.serverUrl);
+		return new SockJS(gf.serverUrl());
 	}
 
 	var gf = {};
@@ -127,7 +127,12 @@
 		return new ctor;
 	}
 
-	gf.serverUrl = 'http://gf-ws-frontend.herokuapp.com/ws';
+	gf.serverUrl = function(){
+
+		var defaultUrl = 'http://gf-ws-frontend.herokuapp.com/ws';
+
+		return window['gf'] != null ? window['gf']['serverUrl'] || defaultUrl : defaultUrl;
+	};
 
 	window['gf'] = gf;
 

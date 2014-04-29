@@ -1,9 +1,11 @@
 var http = require('http'),
     ecstatic = require('ecstatic');
 
+var port = process.env.PORT || 8084;
+
 http.createServer(
 	ecstatic({
 		root: __dirname+"/public",
 		autoIndex: true
 	})
-).listen(8084);
+).listen(port);
