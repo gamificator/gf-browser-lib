@@ -100,10 +100,6 @@
 		throw new Error('Not implemented yet');
 	};
 
-	Client.prototype.flush = function() {
-		throw new Error('Not implemented yet');
-	};
-
 	Client.prototype.list = function(query, fields, callback, ctx) {
 		throw new Error('Not implemented yet');
 	};
