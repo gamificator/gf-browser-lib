@@ -75,6 +75,37 @@
 			'id':    id,
 			'count': count
 		}});
+		return this;
+	};
+
+	Client.prototype.set = function(global, value) {
+		this.send({
+			'type':'Send', 'Send':{
+				'id':    global,
+				'value': value
+			}
+		});
+		return this;
+	};
+
+	Client.prototype.unlock = function() {
+		throw new Error('Not implemented yet');
+	};
+
+	Client.prototype.pause = function() {
+		throw new Error('Not implemented yet');
+	};
+
+	Client.prototype.resume = function() {
+		throw new Error('Not implemented yet');
+	};
+
+	Client.prototype.flush = function() {
+		throw new Error('Not implemented yet');
+	};
+
+	Client.prototype.list = function(query, fields, callback, ctx) {
+		throw new Error('Not implemented yet');
 	};
 
 	Client.prototype.onMessage = function(raw) {
