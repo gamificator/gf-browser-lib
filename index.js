@@ -8,4 +8,6 @@ http.createServer(
 		root: __dirname+"/public",
 		autoIndex: true
 	})
-).listen(port);
+).listen(port, function() {
+	console.log('listening at %s', port);
+});

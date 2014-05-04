@@ -2,6 +2,17 @@
 
 	options = options || {};
 
+	function _typeof (it, type) {
+		if (type != null) {
+			if (type === "undefined" && (it == null || isNaN(it))) {
+				return true;
+			}
+			return Object.prototype.toString.call(it).toLowerCase() === ("[object "+type+"]").toLowerCase();
+		} else {
+			return Object.prototype.toString.call(it).slice(8,-1).toLowerCase();
+		}
+	}
+
 	var onLibraryReady = [],
 	    transport      = null;
 
@@ -69,18 +80,25 @@
 		}
 	};
 
-	Client.prototype.increment = function(id, count) {
+	Client.prototype.increment = function(id, count, extra) {
+
+		if (_typeof(count, "object")) {
+			extra = count;
+			count = null;
+		}
 		count = parseInt(count) || 1;
+
 		this.send({'type':'Increment', 'Increment':{
 			'id':    id,
-			'count': count
+			'count': count,
+			'extra': extra || {}
 		}});
 		return this;
 	};
 
 	Client.prototype.set = function(global, value) {
 		this.send({
-			'type':'Send', 'Send':{
+			'type':'Set', 'Set':{
 				'id':    global,
 				'value': value
 			}
