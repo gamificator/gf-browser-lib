@@ -118,13 +118,19 @@
 		throw new Error('Not implemented yet');
 	};
 
-	Client.prototype.list = function(query, fields, callback, ctx) {
-		throw new Error('Not implemented yet');
+	Client.prototype.list = function(callback, ctx) {
+		this.send({
+			type: 'List', 'List': {}
+		});
 	};
 
 	Client.prototype.onMessage = function(raw) {
 		var data = JSON.parse(raw.data);
-		this.emit('achivement', data);
+		if (_typeof(data, 'Array')) {
+			this.emit('achivements', data);
+		} else {
+			this.emit('achivement', data);
+		}
 	};
 
 	Client.prototype.onClose = function() {
